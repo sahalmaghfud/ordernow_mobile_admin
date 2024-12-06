@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "370114991203",
+    "project_id": "ordernow-b2449",
+    "storage_bucket": "ordernow-b2449.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370114991203:android:ac669023536df750f99456",
+        "android_client_info": {
+          "package_name": "com.example.ordernow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrnYa_QhctZCq_GLTsNGGpXpFDrrEhnfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

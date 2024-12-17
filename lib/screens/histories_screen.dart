@@ -11,25 +11,16 @@ class HistoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Pesanan'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/pesanan');
-            },
-          ),
-        ],
+        title: const Text('Daftar Pesanan'),
       ),
       body: StreamBuilder<List<Pesanan>>(
         stream: _pesananService.getHistories(),
         builder: (context, snapshot) {
-          print('Stream Data: ${snapshot.data}');
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Tidak ada pesanan'));
+            return const Center(child: Text('Tidak ada pesanan'));
           }
 
           return ListView.builder(
@@ -38,18 +29,18 @@ class HistoriesScreen extends StatelessWidget {
               Pesanan pesanan = snapshot.data![index];
 
               return Card(
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Pesanan #${"aaa"}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text('Nama: ${pesanan.namaPel}'),
                       Text('No Meja: ${pesanan.noMeja}'),
                       Text('Total: Rp ${pesanan.total}'),
@@ -58,7 +49,7 @@ class HistoriesScreen extends StatelessWidget {
 
                       // Detail Pesanan
                       ExpansionTile(
-                        title: Text('Detail Pesanan'),
+                        title: const Text('Detail Pesanan'),
                         children: pesanan.detail
                             .map((detail) => ListTile(
                                   title: Text(detail.namaMenu),

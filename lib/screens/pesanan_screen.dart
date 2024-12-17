@@ -9,25 +9,16 @@ class PesananScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Pesanan'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.history),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, '/histories');
-            },
-          ),
-        ],
+        title: const Text('Daftar Pesanan'),
       ),
       body: StreamBuilder<List<Pesanan>>(
         stream: _pesananService.getPesanans(),
         builder: (context, snapshot) {
-          print('Stream Data: ${snapshot.data}');
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('Tidak ada pesanan'));
+            return const Center(child: Text('Tidak ada pesanan'));
           }
 
           return ListView.builder(
@@ -36,18 +27,18 @@ class PesananScreen extends StatelessWidget {
               Pesanan pesanan = snapshot.data![index];
 
               return Card(
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         'Pesanan #${"aaa"}',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       Text('Nama: ${pesanan.namaPel}'),
                       Text('No Meja: ${pesanan.noMeja}'),
                       Text('Total: Rp ${pesanan.total}'),
@@ -55,7 +46,7 @@ class PesananScreen extends StatelessWidget {
 
                       // Detail Pesanan
                       ExpansionTile(
-                        title: Text('Detail Pesanan'),
+                        title: const Text('Detail Pesanan'),
                         children: pesanan.detail
                             .map((detail) => ListTile(
                                   title: Text(detail.namaMenu),
@@ -68,7 +59,7 @@ class PesananScreen extends StatelessWidget {
                       //Dropdown Status Pesanan
                       Row(
                         children: [
-                          Text('Status Pesanan: '),
+                          const Text('Status Pesanan: '),
                           DropdownButton<String>(
                             value: pesanan.statusPesanan,
                             items: [
@@ -90,7 +81,7 @@ class PesananScreen extends StatelessWidget {
                                       pesanan.id, newStatus);
 
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       content: Text(
                                           'Status pesanan berhasil diperbarui!'),
                                     ),
@@ -111,7 +102,7 @@ class PesananScreen extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text('Status Pesanan: '),
+                          const Text('Status Pesanan: '),
                           DropdownButton<String>(
                             value: pesanan.statusPembayaran,
                             items: ['Sudah Bayar', 'Belum Dibayar']

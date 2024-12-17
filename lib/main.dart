@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ordernow/screens/histories_screen.dart';
+import 'package:ordernow/screens/home_screen.dart';
+import 'package:ordernow/screens/login_screen.dart';
 import 'package:ordernow/screens/pesanan_screen.dart';
 import 'package:ordernow/screens/menu_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,11 +22,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => MenuScreen(),
+        '/menu': (context) => MenuScreen(),
         '/pesanan': (context) => PesananScreen(),
         '/histories': (context) => HistoriesScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/home': (context) => const HomeScreen(),
       },
     );
   }

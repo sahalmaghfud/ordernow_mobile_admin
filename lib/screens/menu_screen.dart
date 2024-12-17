@@ -5,7 +5,10 @@ import 'package:ordernow/models/menu_model.dart';
 import 'dart:io';
 
 class MenuScreen extends StatefulWidget {
+  const MenuScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MenuScreenState createState() => _MenuScreenState();
 }
 
@@ -147,9 +150,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   createdAt: menu.createdAt,
                   updatedAt: DateTime.now(),
                 );
-
-                await _menuService.updateMenu(updatedMenu, _imageFile);
                 Navigator.pop(context);
+                await _menuService.updateMenu(updatedMenu, _imageFile);
                 _clearForm();
               }
             },
@@ -186,12 +188,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   createdAt: DateTime.now(),
                   updatedAt: DateTime.now(),
                 );
-                await _menuService.createMenu(menu, _imageFile);
                 Navigator.pop(context);
+                await _menuService.createMenu(menu, _imageFile);
                 _clearForm();
               }
             },
-            child: const Text('Add'),
+            child: const Text('Tambahkan'),
           ),
         ],
       ),
@@ -258,7 +260,7 @@ class _MenuScreenState extends State<MenuScreen> {
             const SizedBox(height: 10),
             ElevatedButton(
               onPressed: _pickImage,
-              child: const Text('Pick Image'),
+              child: const Text('Pilih Gambar'),
             ),
             if (_imageFile != null) Image.file(_imageFile!, height: 100),
           ],
@@ -271,19 +273,20 @@ class _MenuScreenState extends State<MenuScreen> {
     await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Delete Menu'),
-        content: Text('Are you sure you want to delete ${menu.nama}?'),
+        title: const Text('Hapus Menu'),
+        content: Text('Apakah anda yakin ingin menghapus ${menu.nama}?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () async {
               await _menuService.deleteMenu(menu.id);
+              // ignore: use_build_context_synchronously
               Navigator.pop(context);
             },
-            child: const Text('Delete'),
+            child: const Text('Hapus'),
           ),
         ],
       ),
